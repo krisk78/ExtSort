@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "ExtSort.hpp"
+#include "ExtSortApp.hpp"
 
 int main(int argc, char* argv[])
 {

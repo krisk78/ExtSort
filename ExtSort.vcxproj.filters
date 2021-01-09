@@ -18,9 +18,12 @@
     <ClCompile Include="ExtSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExtSortApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ExtSort.hpp">
+    <ClInclude Include="ExtSortApp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
