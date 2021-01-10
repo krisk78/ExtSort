@@ -12,7 +12,7 @@ class Field
 {
 public:
 	FieldType type{FieldType::alpha};
-	size_t position;
+	size_t position{ 0 };
 	size_t length{ 0 };
 };
 
@@ -27,6 +27,7 @@ public:
 	std::string dateFormat{ "d.m.y" };
 	std::string dateSeparator{ "." };
 	int century{ 20 };
+	bool fixedMode{ false };
 	char fieldSeparator{ '\t' };
 	std::vector<Field> keyFields{};
 	bool reverse{ false };

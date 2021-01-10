@@ -121,8 +121,11 @@ std::string ExtSortApp::CheckArguments()
 
 	auto fixedp = us.get_Argument(FIXED_ARG);
 	if (!fixedp->value.empty())				// fixed positions with length are used instead field positions with delimiter
+	{
+		fixedMode = true;
 		if (!AddFields(fixedp->value.front(), true))
 			return "Fixed positions '" + fixedp->value.front() + "' are" + HELP_MESSAGE;
+	}
 
 	auto rev = us.get_Argument(REVERSE_ARG);
 	if (!rev->value.empty() && rev->value.front() == "true")
@@ -148,7 +151,8 @@ void ExtSortApp::MainProcess(const std::filesystem::path& file)
 
 	// initialize input file
 	auto fsize = std::filesystem::file_size(file);
-	auto EOL_len = EOL_length(file_EOL(file));
+	auto EOL_type = file_EOL(file);
+	auto EOL_len = EOL_length(EOL_type);
 	std::ifstream infile(file);
 	std::uintmax_t lineCnt{ 0 };
 	
@@ -173,15 +177,48 @@ void ExtSortApp::MainProcess(const std::filesystem::path& file)
 	while (lineCnt < (begin - 1) && !infile.eof())
 	{
 		std::getline(infile, buf);
-		outfile << buf << std::endl;
+		outfile << buf << EOL_str(EOL_type);
 		lineCnt++;
 		outCnt++;
 	}
 
-	// création des index
-	while (!infile.eof())
+	// index creation
+	while (infile)
 	{
 		std::getline(infile, buf);
+		lineCnt++;
+		if (buf.length() != 0)
+		{
+			std::string key;
+			for (size_t fcnt = 0; fcnt < keyFields.size(); fcnt++)
+			{
+				bool isValid{ false };
+				std::string field;
+				if (fixedMode)			// fields are defined by position in chars and length
+				{
+					if (buf.length() >= keyFields[fcnt].position)
+					{
+						field = buf.substr(keyFields[fcnt].position - 1, keyFields[fcnt].length);
+						isValid = true;
+					}
+				}
+				else					// fields are defined by field number with delimiter
+				{
+					if (true)
+					{
+
+					}
+				}
+				if (isValid)
+				{
+					if (keyFields[fcnt].type != FieldType::alpha)
+					{
+						// TODO trim the field value
+
+					}
+				}
+			}
+		}
 	}
 }
 
