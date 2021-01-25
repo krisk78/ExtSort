@@ -73,10 +73,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(USERPROFILE)\source\repos\krisk78\Libs;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <ReferencePath>$(USERPROFILE)\source\repos\krisk78\Libs;$(VC_ReferencesPath_x86);</ReferencePath>
+    <LibraryPath>$(USERPROFILE)\source\repos\krisk78\Libs\Win32\Debug;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(USERPROFILE)\source\repos\krisk78\Libs;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <ReferencePath>$(USERPROFILE)\source\repos\krisk78\Libs;$(VC_ReferencesPath_x86);</ReferencePath>
+    <LibraryPath>$(USERPROFILE)\source\repos\krisk78\Libs\Win32\Release;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -87,6 +91,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(USERPROFILE)\source\repos\krisk78\Libs;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <ReferencePath>$(USERPROFILE)\source\repos\krisk78\Libs;$(VC_ReferencesPath_x64);</ReferencePath>
+    <LibraryPath>$(USERPROFILE)\source\repos\krisk78\Libs\x64\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

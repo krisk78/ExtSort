@@ -27,6 +27,6 @@ int main(int argc, char* argv[])
 			std::cout << exc.what() << std::endl;
 		return -1;
 	}
-	std::cout << std::endl << nbfiles << " files processed." << std::endl;
+	std::cout << nbfiles << " files processed." << std::endl;
 	return 0;
 }

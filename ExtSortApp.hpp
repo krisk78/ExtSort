@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ConsoleAppFW/consoleapp.hpp>
+#include <utils/utils.hpp>
 
 enum class FieldType
 {
@@ -8,6 +9,7 @@ enum class FieldType
 	numeric,
 	date
 };
+
 class Field
 {
 public:
@@ -32,6 +34,8 @@ public:
 	std::vector<Field> keyFields{};
 	bool reverse{ false };
 	size_t begin{ 1 };
+	bool double_precision{ false };
+	bool ignore_overflow{ false };
 
 	// argument names of the application
 	const std::string FILE_ARG{ "file" };
@@ -43,6 +47,8 @@ public:
 	const std::string FIXED_ARG{ "fixed" };
 	const std::string REVERSE_ARG{ "reverse" };
 	const std::string BEGIN_ARG{ "begin" };
+	const std::string DOUBLE_ARG{ "double" };
+	const std::string IGNORE_ARG{ "ignore" };
 
 protected:
 	virtual void SetUsage() override;											// Defines expected arguments and help.
@@ -50,7 +56,24 @@ protected:
 	virtual void MainProcess(const std::filesystem::path& file) override;		// Launched by ByFile for each file matching argument 'file' values
 
 private:
+	strDateConverter dtConv;
+
+	enum class Precision
+	{
+		simple_precision,
+		double_precision
+	};
+
+	Precision precision{ Precision::simple_precision };
+
+	enum class NumberPart
+	{
+		exponent,
+		value
+	};
+
 	bool CheckDtFormat(const std::string& argvalue);
 	bool AddFields(const std::string& argvalue, bool fixed = false);
-	std::filesystem::path getOutPath(const std::filesystem::path& inpath);				// TODO implement this function in ConsoleAppFW
+	std::string makeSortableStr(const double dbl);
+	std::string makeComplement(const std::string val, const NumberPart numPart);
 };
